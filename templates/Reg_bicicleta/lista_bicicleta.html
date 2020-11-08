@@ -1,0 +1,22 @@
+{% extends 'Reg_bicicleta/base.html' %} 
+
+
+{% block content %}
+<h2> Lista Bicicletas </h2> 
+   {% if object_list %}
+        {% for bicicleta in object_list %}
+            <p>Comuna: {{ bicicleta.comuna }}</p>
+            <p>Ubicacion: {{ bicicleta.ubicacion }}</p>
+            <p>Estado ${{ bicicleta.estado }}</p>           
+            <td>
+                <a class="btn btn-primary" href="{% url 'editar_bicicleta' bicicleta.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'eliminar_bicicleta' bicicleta.id %}">Eliminar</a>
+            </td>  
+            <br>
+        {% endfor %}
+        
+        {% else %}
+        <h1>No hay registros de carrera</h1>
+        {% endif %}
+
+{% endblock %}

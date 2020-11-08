@@ -1,0 +1,14 @@
+{% extends 'Reg_bicicleta/base.html' %}
+
+{% block content %}
+
+{% for c_filtrada in comuna %}
+        <div>
+            <p> Comuna: {{ c_filtrada.comuna }} </p>
+            <p> Ubicacion: {{ c_filtrada.ubicacion }} </p>
+            <p> Estado $ {{ c_filtrada.estado }} </p>
+        </div>
+        <br>
+    {% endfor %}
+
+{% endblock  %}
