@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 <!-- home.html -->
-<!-- {% comment %} {% block title %}Home Page{% endblock title %} {% endcomment %} -->
+
+{% load static %}
+
 
 {% block content %} 
     <h2>Home</h2>
     {% if user.is_authenticated %} <!-- si el usuario está logeado  (dentro del sistema) -->
-        <p>You are welcome on Home Page</p>
-        <p>Your name is - {{user.first_name}} {{user.last_name}}</p> <!-- le dice bienvenido a home y le da su nombre y apellido y en la siguiente linea, el mail -->
-        <p>Your email is - {{user.email}}</p>
+        <p>Bienvenido al Home</p>
+        <p>Tu nombre es - {{user.first_name}} {{user.last_name}}</p> <!-- le dice bienvenido a home y le da su nombre y apellido y en la siguiente linea, el mail -->
+        <p>Tu email es - {{user.email}}</p>
         <br><br>
         <a href="{% url 'logout' %}">Logout</a> <!-- le da la opcion de salirse -->
     {% else %}

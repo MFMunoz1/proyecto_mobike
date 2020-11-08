@@ -121,8 +121,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # SE AGREGAN RECURSOS PARA UNIR CSS CON HTML 
 STATIC_URL = '/static/'
@@ -130,6 +128,7 @@ MEDIA_URL = '/images/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'images')
 STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'static-only')
+
 # REDIRECCIONAMIENTO DEL USUARIO UNA VEZ QUE SE LOGEA Y ENTRA O SALE DEL SISTEMA 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'

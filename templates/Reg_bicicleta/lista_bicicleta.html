@@ -1,10 +1,47 @@
-{% extends 'Reg_bicicleta/base.html' %} 
+{% extends 'base.html' %} 
 
 
 {% block content %}
 <h2> Lista Bicicletas </h2> 
    {% if object_list %}
-        {% for bicicleta in object_list %}
+
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                <th>Comuna</th>
+                <th>Ubicacion</th>
+                <th>Estado</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bicicleta in object_list %}
+            <tr>
+                <th scope="row">{{ bicicleta.comuna }} </th>
+                <td>{{ bicicleta.ubicacion }}</td>
+                <td>${{ bicicleta.estado }}</td>
+
+                {% if user.is_superuser %} 
+                <td><a class="btn btn-primary" href="{% url 'editar_bicicleta' bicicleta.id %}">Editar</a></td>
+                <td><a class="btn btn-danger" href="{% url 'eliminar_bicicleta' bicicleta.id %}">Eliminar</a></td>
+                {% endif %}  
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+{% else %}
+    <h1>No hay registros de bicicletas</h1>
+{% endif %} 
+{% endblock %}
+
+
+
+
+        <!-- {% comment %} {% for bicicleta in object_list %}
             <p>Comuna: {{ bicicleta.comuna }}</p>
             <p>Ubicacion: {{ bicicleta.ubicacion }}</p>
             <p>Estado ${{ bicicleta.estado }}</p>           
@@ -19,4 +56,4 @@
         <h1>No hay registros de carrera</h1>
         {% endif %}
 
-{% endblock %}
+{% endblock %} {% endcomment %} -->
