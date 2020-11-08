@@ -3,6 +3,7 @@ from .models import Bicicleta
 from .forms import BicicletaForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.db.models import Q 
 
 # Create your views here.
 
@@ -41,4 +42,23 @@ class Eliminar_bicicleta(DeleteView):
     model = Bicicleta
     template_name = 'Reg_bicicleta/elimina_bicicleta.html'
     success_url = reverse_lazy('lista_bicicleta')
+
+#-------------------------------FILTROS---------------------------------------------------------
+# FILTRO 1: BUSCAR ALUMNO POR COMUNA 
+class BuscarBicicletaView(ListView):
+    model = Bicicleta
+    template_name = 'Reg_bicicleta/buscar_bicicleta.html'
+    
+
+class SearchResultsView(ListView):
+    model = Bicicleta
+    template_name = 'Reg_bicicleta/search_results.html'
+    
+    def get_queryset(self): 
+        query = self.request.GET.get('q')
+        object_list = Bicicleta.objects.filter(
+            Q(comuna__icontains=query)  |  Q(estado__icontains=query))
+        
+        return object_list
+    
 
