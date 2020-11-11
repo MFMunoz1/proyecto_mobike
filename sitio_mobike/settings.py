@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.Reg_bicicleta',
     'apps.Usuario',
+    'apps.Funcionario',
 ]
 
 MIDDLEWARE = [

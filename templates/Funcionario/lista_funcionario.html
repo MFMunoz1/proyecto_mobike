@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+<h1 class="display-3">Funcionarios</h1>
+<hr>
+<a class="btn" role="button" href="{% url 'funcionario_form' %}">Agregar funcionario</a>
+<hr>
+
+{% if not object_list %}
+<h1>No hay registro de docentes</h1>
+<br><br><br><br><br><br><br><br>
+{% else %}
+<table class="table table-bordered">
+    <thead>
+         <tr>
+             <td>Fotografia</td>
+             <td>Rut</td>
+             <td>Nombre</td>
+             <td>Email</td>
+             <td>Rama Ejecutiva</td>
+         </tr>
+    </thead>
+    <tbody>  
+         {% for funcionario in object_list %}      
+         <tr>
+             <td><img src= ../../static/images/{{ funcionario.fotografia }} style="width: 100px;"/> </td>
+             <td>{{ funcionario.rut }}</td>
+             <td>{{ funcionario.nombre }}</td>
+             <td>{{ funcionario.email }}</td>
+             <td>{{ funcionario.rama_ejecutiva }}</td>
+             <td>
+
+                {% if user.is_superuser %} 
+                    <a class="btn btn-primary" href="{% url 'funcionario_update' funcionario.id%}">  Editar  </a>
+                    <a class="btn btn-danger" href="{% url 'funcionario_borrar' funcionario.id%}">Eliminar</a>
+                {% endif %} 
+                 
+
+                 
+             </td>
+             
+         </tr>
+         {% endfor %}                                
+    </tbody>
+</table>
+{% endif %}
+
+</div>
+
+{% endblock %}

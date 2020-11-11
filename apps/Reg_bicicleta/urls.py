@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth.views import login_required
-from .views import SearchResultsView, BuscarBicicletaView
+# from .views import SearchResultsView
 
 urlpatterns = [
 
@@ -27,7 +27,7 @@ urlpatterns = [
     path('eliminar_bicicleta/<int:pk>', login_required(views.Eliminar_bicicleta.as_view()), name='eliminar_bicicleta'),
     
     #--------------------FILTROS------------------------------------------------------------------------------
-    # FILTRO 1: BUSCAR POR COMUNA 
-    path('buscar/', BuscarBicicletaView.as_view(), name='buscar_bicicleta'),
-    path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('mantenedor/', views.mantenedor , name="mantenedor"), 
+    
+    
 ]

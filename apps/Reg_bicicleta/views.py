@@ -44,21 +44,20 @@ class Eliminar_bicicleta(DeleteView):
     success_url = reverse_lazy('lista_bicicleta')
 
 #-------------------------------FILTROS---------------------------------------------------------
-# FILTRO 1: BUSCAR ALUMNO POR COMUNA 
-class BuscarBicicletaView(ListView):
-    model = Bicicleta
-    template_name = 'Reg_bicicleta/buscar_bicicleta.html'
-    
+# FILTROS: BUSCAR POR COMUNA Y POR ESTADO
+def mantenedor(request):
+    lista= Bicicleta.objects.all()
+    comuna= request.GET.get('comuna')
+    estado= request.GET.get('estado')
 
-class SearchResultsView(ListView):
-    model = Bicicleta
-    template_name = 'Reg_bicicleta/search_results.html'
-    
-    def get_queryset(self): 
-        query = self.request.GET.get('q')
-        object_list = Bicicleta.objects.filter(
-            Q(comuna__icontains=query)  |  Q(estado__icontains=query))
-        
-        return object_list
-    
-
+    if 'btn-buscarComuna' in request.GET:
+       if comuna: 
+           lista= Bicicleta.objects.filter(comuna__icontains=comuna)
+    elif 'btn-buscarEstado' in request.GET:
+        if estado:
+            lista= Bicicleta.objects.filter(estado__icontains=estado)
+      
+    data = {
+        'object_list': lista
+    }
+    return render(request, 'Reg_bicicleta/lista_bicicleta_filtros.html', data)

@@ -31,5 +31,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='Usuario/logout.html'), name='logout'),
     # localhost:8000/
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('funcionario/', include('apps.Funcionario.urls')),
 ]
 
