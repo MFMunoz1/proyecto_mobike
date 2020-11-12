@@ -9,9 +9,6 @@
    
     {% block css %} {% endblock css %}
         <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-        <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> -->
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
@@ -25,22 +22,28 @@
     <div class="contenedor" >
     <!-- CABECERA -->
     
-        <header id= "cabecera" style="background-color: rgb(179, 236, 146);">
-             
+<header id= "cabecera" style="background-color: rgb(179, 236, 146);">
+    <div class="container mt-3 pb-3">
+        <div class="col-md-8">
             <!-- IMAGEN DESCARGA APP  -->
              <div id="descargaapp">
                 <img src="{% static 'images/img/descargaapp.png' %}" alt="izquierda" width="120" height="60">
             </div> 
+        </div>
+    </div>
 
+
+    <div class="container mt-3 pb-3">
+        <div class="col-md-12">
             <!-- IMAGEN LOGO  -->
             <div id="logo">
                 <img src="{% static 'images/img/logo2.jpg' %}" alt="centrado" width="400" height="130" >
             </div> 
 
+        </div>
+    </div>
 
-            <div id="RegistroInicio">
-                    
-                <ul>
+
     <!-- {% block navbar %} -->
     <!-- Nav 1 -->
     <!-- <nav id="navbar"> -->
@@ -78,13 +81,9 @@
         
 
         <!-- {% block javascript %} {% endblock javascript %} -->
-                </ul>
-            
-            </div>
+              
 
             
-            
-
 
             <nav id="navbar" style="background-color: rgb(84, 143, 66);">   
 
@@ -113,10 +112,10 @@
                                 <li class="nav-item"><a href="{% url 'logout' %}">Cerrar sesión</a></li>
                                 <span class="ml-md-5" style="color: rgb(81, 174, 214);"><strong>Usuario: {{ user.get_username }}</strong></span>
                                 {% endif %}                
-
-                            <li> <a href="quienessomos.html" target="_blank"> Quienes Somos </a> </li>
-                            <li> <a href="preguntasfrecuentes.html"> Preguntas Frecuentes </a> </li>
-                            <li> <a href="galeria.html" target="_blank"> Galería </a> </li>
+                                
+                            <li class="nav-item"><a href="{% url 'quienes_somos' %}">Quienes somos</a></li>
+                            <li class="nav-item"><a href="{% url 'galeria' %}">Galeria</a></li>
+                        
                             
                         </ul>
                     </nav>
@@ -144,30 +143,34 @@
        </div>
 
         <footer id="pie" style="background-color: rgb(49, 131, 24);" >
-            
+    <div class="container mt-3 pb-3">
+        <div class="col-md-12">   
+            <br>
             <div id="img_footer">
                 <img src="{% static 'images/img/footer.jpg' %}" alt="" width="100" height="100" >
             </div>
 
             <div id="text1">
-                <p> 2018 Mobike</p>
+                <font color="silver"> <p> 2018 Mobike</p> </font>
             </div>
 
             <div id="text2">
-                <p>Todos los derechos reservados</p>
+                <font color="silver"> <p>Todos los derechos reservados</p> </font>
             </div>
             
             <div id="text3">
                 <ul>
                     <li> <a href="https://mobike.com/cl/" target="_blank" > support.cl@mobike.com </a> </li>
+                    
                 </ul>
+            <br>
             </div>
-
+            
+        </div>
+    </div>
         </footer>
-
     </div>
 
-    
 </body>
 
 </html> 

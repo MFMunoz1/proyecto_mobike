@@ -5,14 +5,76 @@
 
 
 {% block content %} 
+<div class="container mt-3 pb-3">
+    <div class="col-md-8">
     <h2>Home</h2>
-    {% if user.is_authenticated %} <!-- si el usuario está logeado  (dentro del sistema) -->
+    <hr>
+    {% if user.is_authenticated %} 
         <p>Bienvenido al Home</p>
-        <p>Tu nombre es - {{user.first_name}} {{user.last_name}}</p> <!-- le dice bienvenido a home y le da su nombre y apellido y en la siguiente linea, el mail -->
+        <p>Tu nombre es - {{user.first_name}} {{user.last_name}}</p> 
         <p>Tu email es - {{user.email}}</p>
-        <br><br>
-        <a href="{% url 'logout' %}">Logout</a> <!-- le da la opcion de salirse -->
+        <br>
+        <a href="{% url 'logout' %}">Logout</a> 
     {% else %}
-        <a href="{% url 'login' %}">Login</a> <!-- le crea el login para que ingrese -->
+        <a href="{% url 'login' %}">Login</a> 
     {% endif %}
+    
+
+
+
+
+    <article class="post post1"> 
+        <div class="titulo">
+            <br>
+        <font color="green"><h3> Mobike te acerca a tu lugar de destino </h3></font>
+        </div>
+        <p> 
+                Miles de bicicletas disponibles a tu alrededor. 
+                    Finaliza el recorrido en cualquier estacionamiento 
+                    para bicicletas que este cerca de tu lugar de destino
+        </p> 
+        <br> 
+
+    </article>
+
+
+    <!-- POSTEO 2 -->
+    <article class="post post2">
+        <font color="green"><h3> Una opcion sencilla y practica </h3></font>
+         <p>
+            Despues de descargar la aplicacion y registrarte, solo escanea el 
+            codigo QR que figura en la bicicleta y comienza tu recorrido. 
+            Cierra el candado una vez que dejes la bicicleta en el area de estacionamiento y listo 
+        </p> 
+        <br>
+
+    </article>
+
+
+    <!-- POSTEO 3 -->
+    
+    <article class="post post3" >
+        <font color="green"><h3> #MobikeMovement </h3></font>
+         <p>
+            Ya no tendras que acarrear tu propia bicicleta a todos lados ni viajar 
+            apretado en los autobuses. Simplemente usa Mobike para llegar a donde quieras
+        </p> 
+        <br>
+       
+    </article>
+
+
+    <!-- POSTEO 4 -->
+   
+    <article class="post post4" >
+    <font color="green"><h3> Medio de pago sencillo y seguro </h3></font>
+         <p>
+            Desde la aplicacion, recarga tu cartera en cualquier momento
+        </p> 
+        <br>
+        
+    </article>
+</div>
+</div>
+
 {% endblock content %}

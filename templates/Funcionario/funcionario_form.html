@@ -4,7 +4,8 @@
 {% block content %}
 <div class="container mt-3 pb-3">
     <div class="col-md-5">
-    <h1>Registro Funcionario</h1>
+    <h2>Registro de Funcionario</h2>
+    <hr>
     <form id="formulario" method="POST" enctype= "multipart/form-data" >{% csrf_token %}
 
         {% for field in form %}
@@ -19,6 +20,7 @@
         <input type="submit" value="Grabar" class="btn btn-success">
     
     </form>
+    <br>
 </div>
 </div>
 {% endblock %}
