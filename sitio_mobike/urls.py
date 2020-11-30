@@ -36,5 +36,6 @@ urlpatterns = [
     path('galeria/', TemplateView.as_view(template_name='galeria.html'), name='galeria'),
     
     path('', include('social_django.urls', namespace='social')),
+    path('', include('pwa.urls')),
 ]
 

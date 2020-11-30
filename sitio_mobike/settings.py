@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     # PARA EL LOGIN SOCIAL 
     'social_django',  
     'social.apps.django_app.default',
-
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +156,25 @@ STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static',
 # REDIRECCIONAMIENTO DEL USUARIO UNA VEZ QUE SE LOGEA Y ENTRA O SALE DEL SISTEMA 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# ---------------------------PWA --------------------------------------------------------------
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+
+PWA_APP_NAME = 'Proyecto Mobike'
+PWA_APP_DESCRIPTION = 'Sitio Mobike'
+PWA_APP_THEME_COLOR = '#A8E37D'
+PWA_APP_BACKGROUND_COLOR = '#fff'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/icons/dog.png',
+        'sizes': '128x128'
+    },
+    {
+        'src': '/static/images/icons/dog (1).png',
+        'sizes': '256x256'
+    },
+    {
+        'src': '/static/images/icons/dog (2).png',
+        'sizes': '512x512'
+    }
+]
