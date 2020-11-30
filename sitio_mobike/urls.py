@@ -34,5 +34,7 @@ urlpatterns = [
     path('funcionario/', include('apps.Funcionario.urls')),
     path('quienes_somos/', TemplateView.as_view(template_name='quienessomos.html'), name='quienes_somos'),
     path('galeria/', TemplateView.as_view(template_name='galeria.html'), name='galeria'),
+    
+    path('', include('social_django.urls', namespace='social')),
 ]
 

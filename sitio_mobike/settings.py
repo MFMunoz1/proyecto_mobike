@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'apps.Reg_bicicleta',
     'apps.Usuario',
     'apps.Funcionario',
+    # PARA LA API 
     'rest_framework',
+    # PARA EL LOGIN SOCIAL 
+    'social_django',  
+    'social.apps.django_app.default',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware', 
 ]
 
 ROOT_URLCONF = 'sitio_mobike.urls'
@@ -67,11 +73,27 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
             ],
         },
     },
 ]
 
+
+AUTHENTICATION_BACKENDS = [
+                'social.backends.facebook.FacebookAppOAuth2',
+                'social.backends.facebook.FacebookOAuth2',
+                'django.contrib.auth.backends.ModelBackend',
+                'social_core.backends.facebook.FacebookOAuth2',
+]
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1717880405039890'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3ebdfc5d10e68f0535a94b6c79a196a7'
 
 WSGI_APPLICATION = 'sitio_mobike.wsgi.application'
 

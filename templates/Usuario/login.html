@@ -4,6 +4,12 @@
 
 
 {% block content %}
+
+<!-- SE AGREGAN LOS ENLACES DE LA RED SOCIAL -->
+<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+
+
 <div id="registro" class="container">
     <h2 class="display">Login</h2><br>
     <form method="POST" id="formulario">
