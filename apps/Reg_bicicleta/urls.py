@@ -29,5 +29,10 @@ urlpatterns = [
     #--------------------FILTROS------------------------------------------------------------------------------
     path('mantenedor/', views.mantenedor , name="mantenedor"), 
     
-    
+    # API --------------------------------------------------------
+    # LISTA TODAS LAS BICICLETAS
+    path('bicicletas/',  views.bicicleta_collection , name='bicicleta_collection'),
+    # LISTA LA BICICLETA POR PK
+    path('bicicletas/<int:pk>/', views.bicicleta_element ,name='bicicleta_element')
+
 ]

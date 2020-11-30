@@ -1,9 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Bicicleta
 from .forms import BicicletaForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.db.models import Q 
+
+#--IMPORTACIONES PARA LA API ---------------------
+from django.http import HttpResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import BicicletaSerializer
+from rest_framework import status
+from django.http.response import JsonResponse
+from rest_framework.parsers import JSONParser 
+
+
 
 # Create your views here.
 
@@ -61,3 +72,49 @@ def mantenedor(request):
         'object_list': lista
     }
     return render(request, 'Reg_bicicleta/lista_bicicleta_filtros.html', data)
+
+
+# ----FUNCIONES API --------------------------
+@api_view(['GET', 'POST'])
+def bicicleta_collection(request):
+    # SE LISTAN TODOS LOS OBJETOS DE LA COLECCIÓN 
+    if request.method == 'GET':
+        bicicletas = Bicicleta.objects.all()
+        serializer = BicicletaSerializer(bicicletas, many=True)
+        return Response(serializer.data)
+    
+    # SE AGREGA UN OBJETO A LA COLECCIÓN 
+    elif request.method == 'POST':
+        serializer = BicicletaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def bicicleta_element(request, pk):
+    bicicleta = get_object_or_404(Bicicleta, id=pk)
+    # SE LISTA UN SOLO OBJETO DE LA COLECCIÓN
+    if request.method == 'GET':
+        serializer = BicicletaSerializer(bicicleta)
+        return Response(serializer.data)
+    
+    # SE ELIMINA UN OBJETO DE LA COLECCIÓN
+    elif request.method == 'DELETE':
+        bicicleta.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    # SE MODIFICA UN OBJETO DE LA COLECCIÓN
+    elif request.method == 'PUT': 
+        bicicleta_new = JSONParser().parse(request) 
+        serializer = BicicletaSerializer(bicicleta, data=bicicleta_new) 
+        if serializer.is_valid(): 
+            serializer.save() 
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    
+    
