@@ -7,6 +7,11 @@ from django.urls import reverse_lazy
 
 from .models import Funcionario
 from .forms import FuncionarioForm
+
+# --IMPORTACIONES DE LA API--
+from rest_framework import generics
+from .serializers import FuncionarioSerializer
+
 # Create your views here.
 
 class FuncionarioList (ListView):                    
@@ -29,3 +34,13 @@ class FuncionarioDelete(DeleteView):
     model = Funcionario
     template_name = 'Funcionario/borrar_funcionario.html'
     success_url = reverse_lazy('lista_funcionario')
+
+
+#---API PARA FUNCIONARIO--------------------------------------
+class API_objects(generics.ListCreateAPIView):
+    queryset = Funcionario.objects.all()
+    serializer_class = FuncionarioSerializer
+    
+class API_objects_details(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Funcionario.objects.all()
+    serializer_class = FuncionarioSerializer

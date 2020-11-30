@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.Reg_bicicleta',
     'apps.Usuario',
     'apps.Funcionario',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
